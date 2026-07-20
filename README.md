@@ -1,106 +1,44 @@
 # Generator PPT-X
 
-## Project Status
+A Python-based PowerPoint generator that creates professional presentations from JSON.
 
-### Overall Progress
-- [x] config.py
-- [x] drawing/styles.py
-- [x] drawing/canvas.py
-- [ ] drawing/primitives.py
-- [ ] drawing/shapes.py
-- [ ] renderers/diagram_renderer.py
-- [ ] diagrams/geometry.py
-- [ ] diagrams/flowchart.py
-- [ ] diagrams/tree.py
-- [ ] diagrams/network.py
-- [ ] diagrams/biology.py
-- [ ] diagrams/chemistry.py
-- [ ] diagrams/physics.py
-- [ ] diagrams/computer.py
-- [ ] renderers/graph_renderer.py
-- [ ] engine/ppt_generator.py
-- [ ] engine/slide_dispatcher.py
-- [ ] renderers/title_renderer.py
-- [ ] renderers/theory_renderer.py
-- [ ] renderers/question_renderer.py
-- [ ] renderers/table_renderer.py
-- [ ] engine/json_loader.py
-- [ ] app.py
+## Features
 
----
+- JSON-driven presentation generation
+- Automatic PowerPoint creation
+- Diagram rendering
+- Graph rendering
+- Reusable rendering engine
+- Modular architecture
+- Offline generation
 
-## Locked Files
+## Tech Stack
 
-### config.py ✅
-**Status:** Locked
+- Python
+- python-pptx
+- Matplotlib
 
-**Purpose**
-- Stores all global constants.
-- Centralizes slide dimensions.
-- Centralizes fonts.
-- Centralizes colors.
-- Centralizes margins.
-- Centralizes default image settings.
-- Centralizes graph and diagram dimensions.
-- Defines default background path.
+## Project Structure
 
-**Dependencies**
-- pptx.util
-- pptx.dml.color
+```
+Generator PPT-X/
+├── app.py
+├── config.py
+├── drawing/
+├── diagrams/
+├── renderers/
+├── engine/
+├── assets/
+└── docs/
+```
 
-**Used By**
-- Entire project.
+## Documentation
 
-### drawing/styles.py ✅
-**Status:** Locked
+Project documentation is available in the `docs/` directory.
 
-**Purpose**
-- Defines reusable drawing styles for the rendering engine.
-- Keeps all styling separate from drawing logic.
-- Provides a common style object shared by diagrams and graphs.
-- Converts PowerPoint RGB colors into Matplotlib-compatible RGB values.
+- DOCUMENTATION.md
+- ROADMAP.md
 
-**Contains**
-- rgb() helper
-- DrawingStyle dataclass
-- DEFAULT_STYLE
-- PRIMARY_STYLE
-- SECONDARY_STYLE
-- ACCENT_STYLE
-- LABEL_STYLE
-- GRID_STYLE
+## Status
 
-**Dependencies**
-- dataclasses
-- config.py
-
-**Used By**
-- drawing/canvas.py
-- drawing/primitives.py
-- renderers/diagram_renderer.py
-- renderers/graph_renderer.py
----
-
-## Future Checkpoints
-
-### Checkpoint 1
-- Foundation complete.
-
-### Checkpoint 2
-- Drawing engine complete.
-
-### Checkpoint 3
-- Diagram engine complete.
-
-### Checkpoint 4
-- Graph engine complete.
-
-### Checkpoint 5
-- PPT engine complete.
-
-### Checkpoint 6
-- GUI complete.
-
----
-
-## Notes
+🚧 Version 1.0 is currently under development.
