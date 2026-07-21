@@ -1,4 +1,6 @@
 from numbers import Real
+import math
+from copy import deepcopy
 
 class DrawingTransforms:
 
