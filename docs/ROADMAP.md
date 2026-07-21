@@ -6,8 +6,14 @@
 - [x] config.py
 - [x] drawing/styles.py
 - [x] drawing/canvas.py
-- [ ] drawing/primitives.py
+- [x] drawing/primitives.py
 - [ ] drawing/shapes.py
+- [ ] drawing/arrows.py
+- [ ] drawing/labels.py
+- [ ] drawing/dimensions.py
+- [ ] drawing/transforms.py
+- [ ] drawing/geometry_utils.py
+- [ ] drawing/layout.py
 
 ---
 

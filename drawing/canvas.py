@@ -45,6 +45,91 @@ class DrawingCanvas:
 
         self._configure()
 
+    # Set Drawing Limits
+    def set_limits(
+        self,
+        xmin,
+        xmax,
+        ymin,
+        ymax,
+    ):
+
+        self.axis.set_xlim(xmin, xmax)
+        self.axis.set_ylim(ymin, ymax)
+
+    # Set Aspect Ratio
+    def set_equal_aspect(
+        self,
+        enabled=True,
+    ):
+
+        if enabled:
+            self.axis.set_aspect("equal")
+        else:
+            self.axis.set_aspect("auto")
+
+    # Show Axes
+    def show_axes(self):
+
+        self.axis.set_axis_on()
+
+    # Hide Axes
+    def hide_axes(self):
+
+        self.axis.set_axis_off()
+
+    # Show Grid
+    def show_grid(
+        self,
+        major=True,
+        minor=False,
+    ):
+
+        self.axis.grid(
+            visible=major,
+            which="major",
+        )
+
+        if minor:
+            self.axis.minorticks_on()
+
+            self.axis.grid(
+                visible=True,
+                which="minor",
+            )
+
+    # Hide Grid
+    def hide_grid(self):
+
+        self.axis.grid(False)
+
+        self.axis.minorticks_off()
+
+    # Set Title
+    def set_title(
+        self,
+        title,
+    ):
+
+        self.axis.set_title(title)
+
+    # Reset Canvas
+    def reset(self):
+
+        self.axis.cla()
+
+        self._configure()
+
+    # Get X Limits
+    def get_xlim(self):
+
+        return self.axis.get_xlim()
+    
+    # Get Y Limits
+    def get_ylim(self):
+
+        return self.axis.get_ylim()
+
     # Save Canvas
     def save(self, output_path):
 
