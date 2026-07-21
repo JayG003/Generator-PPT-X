@@ -10,7 +10,7 @@
 - [x] drawing/shapes.py
 - [x] drawing/arrows.py
 - [x] drawing/labels.py
-- [ ] drawing/dimensions.py
+- [x] drawing/dimensions.py
 - [ ] drawing/transforms.py
 - [ ] drawing/geometry_utils.py
 - [ ] drawing/layout.py
@@ -858,6 +858,316 @@ utilities.
 - Public APIs remain renderer-independent.
 - Style overrides preserve immutable DrawingStyle instances.
 - Compatible with DrawingCanvas, DrawingShapes and DrawingArrows.
+
+---
+
+# drawing/dimensions.py
+
+## Status
+
+**Status:** Locked ✅
+
+---
+
+## Purpose
+
+Provides reusable engineering dimensioning, measurement, and annotation
+utilities for the drawing engine.
+
+This module is responsible for creating CAD-style dimensions using the
+lower-level drawing modules.
+
+It does not perform automatic layout, collision detection, or diagram
+generation.
+
+It serves as the common dimension layer used by higher-level renderers and
+diagram modules.
+
+---
+
+## Responsibilities
+
+- Draw linear dimensions
+- Draw aligned dimensions
+- Draw angular dimensions
+- Draw radial dimensions
+- Draw leader annotations
+- Draw engineering helper lines
+- Calculate reusable geometry
+- Format measurement values
+
+---
+
+## Public API
+
+### Linear Dimensions
+
+- horizontal_dimension()
+- vertical_dimension()
+- aligned_dimension()
+- linear_measurement()
+
+---
+
+### Parallel Dimensions
+
+- baseline_dimension()
+- continuous_dimension()
+
+---
+
+### Angular Dimensions
+
+- angle_dimension()
+- arc_dimension()
+- radius_dimension()
+- diameter_dimension()
+- chord_dimension()
+- sector_dimension()
+
+---
+
+### Leader Dimensions
+
+- leader_line()
+- multi_leader()
+- coordinate_dimension()
+- elevation_marker()
+- datum_marker()
+- reference_dimension()
+
+---
+
+### Engineering Helpers
+
+- extension_line()
+- witness_line()
+- tick_mark()
+- terminator()
+- center_mark()
+- center_line()
+- hidden_dimension_line()
+- construction_line()
+
+---
+
+### Utility Methods
+
+- auto_text_placement()
+- format_units()
+- format_precision()
+- distance()
+- midpoint()
+- offset_point()
+- offset_line()
+- arrow_direction()
+
+---
+
+## Internal Helpers
+
+These helpers are implementation details and are not considered part of the
+public API.
+
+### Style Helpers
+
+- _resolve_style()
+- _resolve_label_style()
+- _copy_style()
+- _copy_label_style()
+- _dimension_style()
+- _label_style()
+
+### Geometry Helpers
+
+- _distance()
+- _direction()
+- _perpendicular()
+- _angle()
+- _midpoint()
+- _line_length()
+- _normalize()
+- _point_along()
+- _rotate_vector()
+- _project_point()
+
+### Offset Helpers
+
+- _offset_point()
+- _offset_line()
+- _extend_line()
+- _trim_line()
+
+### Arrow Helpers
+
+- _arrow_endpoints()
+- _inside_dimension()
+- _arrow_direction()
+- _extension_line()
+
+### Label Helpers
+
+- _label_position()
+- _label_rotation()
+- _label_anchor()
+- _text_offset()
+- _dimension_text_position()
+- _draw_dimension_text()
+
+### Dimension Helpers
+
+- _dimension_line()
+- _offset_dimension_lines()
+
+### Arc Helpers
+
+- _arc_angles()
+- _arc_midpoint()
+- _draw_arc()
+- _draw_arc_arrows()
+
+### Leader Helpers
+
+- _leader_path()
+- _leader_label_position()
+
+---
+
+## Dependencies
+
+Requires
+
+- math
+- copy.replace
+
+Uses
+
+- DrawingPrimitives
+- DrawingArrows
+- DrawingLabels
+- DrawingShapes
+
+Uses
+
+- DrawingStyle
+- DEFAULT_STYLE
+- LABEL_STYLE
+
+Requires
+
+- DrawingCanvas.get_axis()
+- DrawingCanvas.get_figure()
+
+---
+
+## Design Goals
+
+- Lightweight
+- Stateless
+- Reusable
+- Consistent styling
+- Geometry-driven
+- Renderer-independent
+- CAD-inspired
+- Easily extensible
+
+---
+
+## Design Decisions
+
+### Geometry Reuse
+
+All geometric calculations are centralized into helper methods.
+
+Higher-level dimension methods reuse these helpers instead of duplicating
+geometry calculations.
+
+---
+
+### Style Resolution
+
+Every public drawing method resolves styles through shared helper methods,
+allowing temporary overrides while preserving immutable DrawingStyle
+instances.
+
+---
+
+### Layered Design
+
+Dimensions are composed using DrawingPrimitives, DrawingArrows and
+DrawingLabels instead of interacting with Matplotlib directly.
+
+---
+
+### Public Utility Methods
+
+Frequently used helper operations such as distance calculation, midpoint,
+offsets and formatting are exposed through a small public utility API while
+keeping implementation helpers private.
+
+---
+
+## Known Limitations
+
+Current implementation does **not** include:
+
+- Automatic dimension placement
+- Collision avoidance
+- Automatic witness line trimming
+- Smart text repositioning
+- Associative dimensions
+- Parametric constraints
+- GD&T annotations
+- Welding symbols
+- Surface finish symbols
+- Automatic tolerance generation
+
+These responsibilities belong to higher-level layout or CAD modules.
+
+---
+
+## Future Enhancements
+
+Potential future additions include:
+
+- Geometric Dimensioning & Tolerancing (GD&T)
+- Weld symbols
+- Surface finish symbols
+- Fit and tolerance annotations
+- Chain dimension optimization
+- Automatic dimension spacing
+- Collision-free dimension layout
+- Smart leader routing
+- Associative dimensions
+- Parametric constraints
+
+---
+
+## Used By
+
+This module is intended to be reused by:
+
+- renderers/diagram_renderer.py
+- diagrams/geometry.py
+- diagrams/physics.py
+- diagrams/computer.py
+- diagrams/biology.py
+- diagrams/chemistry.py
+- diagrams/network.py
+- diagrams/flowchart.py
+
+---
+
+## Notes
+
+This module provides reusable engineering dimension drawing utilities only.
+
+Diagram semantics, automatic layout, collision avoidance, constraint solving,
+and CAD-specific intelligence belong to higher-level renderer or layout
+modules.
+
+This file should remain focused on reusable dimensioning operations and
+geometry helpers.
 
 ---
 

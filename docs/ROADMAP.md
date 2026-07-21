@@ -9,7 +9,7 @@
 - [x] drawing/primitives.py
 - [x] drawing/shapes.py
 - [x] drawing/labels.py
-- [ ] drawing/dimensions.py
+- [x] drawing/dimensions.py
 - [ ] drawing/transforms.py
 - [ ] drawing/geometry_utils.py
 - [ ] drawing/layout.py
