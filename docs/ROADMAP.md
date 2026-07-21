@@ -8,8 +8,7 @@
 - [x] drawing/canvas.py
 - [x] drawing/primitives.py
 - [x] drawing/shapes.py
-- [ ] drawing/arrows.py
-- [ ] drawing/labels.py
+- [x] drawing/labels.py
 - [ ] drawing/dimensions.py
 - [ ] drawing/transforms.py
 - [ ] drawing/geometry_utils.py
