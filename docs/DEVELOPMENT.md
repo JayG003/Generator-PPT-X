@@ -7,7 +7,7 @@
 - [x] drawing/styles.py
 - [x] drawing/canvas.py
 - [x] drawing/primitives.py
-- [ ] drawing/shapes.py
+- [x] drawing/shapes.py
 - [ ] drawing/arrows.py
 - [ ] drawing/labels.py
 - [ ] drawing/dimensions.py
@@ -172,6 +172,108 @@
 - drawing/dimensions.py
 - renderers/diagram_renderer.py
 - renderers/graph_renderer.py
+
+### drawing/shapes.py ✅
+**Status:** Locked
+
+**Purpose**
+- Provides reusable high-level shapes built on top of DrawingPrimitives.
+- Encapsulates common geometry, flowchart, UI, symbol, and annotation shapes.
+- Ensures higher-level renderers never construct polygon geometry manually.
+- Reuses common helpers for rotation, labels, and polygon generation.
+
+**Contains**
+
+#### Basic Shapes
+- rectangle()
+- rounded_rectangle()
+- square()
+- circle()
+- ellipse()
+- triangle()
+- right_triangle()
+
+#### Polygon Shapes
+- diamond()
+- parallelogram()
+- trapezoid()
+- regular_polygon()
+- pentagon()
+- hexagon()
+- octagon()
+
+#### Flowchart Shapes
+- process()
+- decision()
+- data()
+- document()
+- manual_input()
+- database()
+- stored_data()
+
+#### UI & Diagram Shapes
+- folder()
+- file()
+- note()
+- cloud()
+- speech_bubble()
+- thought_bubble()
+- banner()
+- flag()
+
+#### Symbols
+- star()
+- heart()
+- gear()
+- cross()
+- plus()
+- minus()
+- check()
+- x_mark()
+- target()
+
+#### Math Helpers
+- brace()
+- bracket()
+- angle_marker()
+- coordinate_marker()
+- measurement_box()
+
+#### Utility Methods
+- rotate_shape()
+- scale_shape()
+- bounding_box()
+- label_at_center()
+- label_at()
+
+#### Internal Helpers
+- _resolve_style()
+- _validate_dimension()
+- _validate_point()
+- _rectangle_points()
+- _center()
+- _rotate_point()
+- _rotate_points()
+- _draw_polygon()
+- _draw_label()
+- _regular_polygon()
+
+**Dependencies**
+- math
+- drawing/primitives.py
+- drawing/styles.py
+
+**Used By**
+- renderers/diagram_renderer.py
+- diagrams/geometry.py
+- diagrams/flowchart.py
+- diagrams/tree.py
+- diagrams/network.py
+- diagrams/biology.py
+- diagrams/chemistry.py
+- diagrams/physics.py
+- diagrams/computer.py
+
 
 ---
 

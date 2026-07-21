@@ -7,7 +7,7 @@
 - [x] drawing/styles.py
 - [x] drawing/canvas.py
 - [x] drawing/primitives.py
-- [ ] drawing/shapes.py
+- [x] drawing/shapes.py
 - [ ] drawing/arrows.py
 - [ ] drawing/labels.py
 - [ ] drawing/dimensions.py
