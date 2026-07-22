@@ -11,8 +11,8 @@
 - [x] drawing/arrows.py
 - [x] drawing/labels.py
 - [x] drawing/dimensions.py
-- [ ] drawing/transforms.py
-- [ ] drawing/geometry_utils.py
+- [x] drawing/transforms.py
+- [x] drawing/geometry_utils.py
 - [ ] drawing/layout.py
 - [ ] renderers/diagram_renderer.py
 - [ ] diagrams/geometry.py
@@ -1168,6 +1168,673 @@ modules.
 
 This file should remain focused on reusable dimensioning operations and
 geometry helpers.
+
+---
+
+# drawing/transforms.py ✅
+
+**Status:** Locked
+
+---
+
+## Purpose
+
+Provides reusable geometric transformation and geometry helper utilities for
+the drawing engine.
+
+This module is responsible for transforming points and collections of points.
+
+It does not perform any drawing, rendering, diagram generation, or automatic
+layout.
+
+It serves as the common transformation layer used by higher-level drawing,
+diagram and renderer modules.
+
+---
+
+## Responsibilities
+
+- Translate points
+- Rotate geometry
+- Scale geometry
+- Reflect geometry
+- Shear geometry
+- Apply affine transformations
+- Perform matrix operations
+- Compute bounding geometry
+- Provide reusable geometry helper methods
+
+---
+
+## Public API
+
+### Translation
+
+- translate_point()
+- translate_points()
+- translate_x()
+- translate_y()
+- translate_about()
+
+---
+
+### Rotation
+
+- rotate_point()
+- rotate_points()
+
+---
+
+### Scaling
+
+- scale_point()
+- scale_points()
+
+---
+
+### Reflection
+
+- reflect_point()
+- reflect_points()
+
+---
+
+### Shearing
+
+- shear_point()
+- shear_points()
+
+---
+
+### Matrix Operations
+
+- matrix_multiply()
+- compose_matrices()
+- identity_matrix()
+- apply_matrix()
+- apply_matrix_points()
+
+---
+
+### Bounding Helpers
+
+- bounding_box()
+- bounding_size()
+- bounding_center()
+
+---
+
+### Geometry Utilities
+
+- centroid()
+- polygon_area()
+- is_clockwise()
+
+---
+
+## Internal Helpers
+
+These helpers are implementation details and are not considered part of the
+public API.
+
+### Validation Helpers
+
+- _validate_point()
+- _validate_points()
+- _validate_center()
+
+### Geometry Helpers
+
+- _distance()
+- _midpoint()
+- _direction()
+- _normalize()
+- _angle()
+- _copy_points()
+
+---
+
+## Dependencies
+
+Requires
+
+- math
+- copy.deepcopy
+- numbers.Real
+
+Uses
+
+- Standard Python geometry utilities
+
+Requires
+
+- No Matplotlib dependencies
+
+---
+
+## Design Goals
+
+- Lightweight
+- Stateless
+- Reusable
+- Geometry-driven
+- Renderer-independent
+- Drawing-independent
+- Minimal dependencies
+- Easily extensible
+
+---
+
+## Design Decisions
+
+### Pure Geometry
+
+Every transformation operates only on coordinates.
+
+This module never performs drawing operations.
+
+---
+
+### Immutable Operations
+
+Transformation methods return newly transformed coordinates.
+
+Input points are never modified.
+
+---
+
+### Matrix-Based Transformations
+
+Affine transformations are implemented using homogeneous 3×3 matrices.
+
+This allows translation, rotation, scaling and shearing to be composed into
+larger transformations.
+
+---
+
+### Geometry Reuse
+
+Common geometric calculations are centralized into reusable helper methods.
+
+Higher-level drawing modules should reuse these helpers instead of duplicating
+geometry logic.
+
+---
+
+### Bounding Utilities
+
+Bounding box calculations are intentionally lightweight and axis-aligned.
+
+Rotated or oriented bounding boxes belong to higher-level geometry modules.
+
+---
+
+## Known Limitations
+
+Current implementation does **not** include:
+
+- 3D transformations
+- Perspective transformations
+- Projective transformations
+- Matrix inversion
+- Matrix determinant calculation
+- Convex hull generation
+- Polygon clipping
+- Line intersection testing
+- Bezier transformations
+- Shape boolean operations
+
+These responsibilities belong to future geometry utilities.
+
+---
+
+## Future Enhancements
+
+Potential future additions include:
+
+- Matrix inversion
+- Transformation pipelines
+- Transformation stacks
+- Convex hull algorithms
+- Polygon simplification
+- Polygon clipping
+- Line intersection helpers
+- Oriented bounding boxes
+- Minimum-area bounding rectangles
+- 3D transformation support
+
+---
+
+## Used By
+
+This module is intended to be reused by:
+
+- drawing/shapes.py
+- drawing/arrows.py
+- drawing/dimensions.py
+- drawing/geometry_utils.py
+- renderers/diagram_renderer.py
+- renderers/graph_renderer.py
+- diagrams/geometry.py
+- diagrams/flowchart.py
+- diagrams/network.py
+- diagrams/biology.py
+- diagrams/chemistry.py
+- diagrams/physics.py
+- diagrams/computer.py
+
+---
+
+## Notes
+
+This module provides reusable geometry and transformation utilities only.
+
+Drawing operations, rendering decisions, automatic layout, collision detection,
+routing and diagram semantics belong to higher-level drawing and renderer
+modules.
+
+This file should remain focused on reusable geometric transformations and
+supporting helper utilities.
+
+---
+
+# drawing/geometry_utils.py
+
+## Status
+
+**Status:** Locked ✅
+
+---
+
+## Purpose
+
+Provides reusable computational geometry and geometry helper utilities for the
+drawing engine.
+
+This module is responsible only for geometric calculations and geometric
+relationships.
+
+It performs no drawing, rendering, layout, or diagram generation.
+
+It serves as the common geometry layer used by drawing modules, renderers,
+graphs and diagram generators.
+
+---
+
+## Responsibilities
+
+- Validate geometry objects
+- Perform vector mathematics
+- Compute distances and angles
+- Work with infinite lines and finite segments
+- Compute projections
+- Handle circle geometry
+- Perform polygon computations
+- Compute centroids and areas
+- Perform bounding-box operations
+- Test geometric relationships
+- Compute convex hulls
+- Provide reusable geometry helper methods
+
+---
+
+## Public API
+
+### Validation
+
+- is_close()
+- is_zero()
+- validate_point()
+- validate_points()
+
+---
+
+### Point Helpers
+
+- point()
+- x()
+- y()
+- midpoint()
+- translate_point()
+- scale_point()
+- points_equal()
+
+---
+
+### Vector Helpers
+
+- vector()
+- vector_from_xy()
+- add_vectors()
+- subtract_vectors()
+- negate_vector()
+- scale_vector()
+- dot()
+- cross()
+- magnitude()
+- magnitude_squared()
+- normalize()
+
+---
+
+### Distance Helpers
+
+- distance()
+- distance_squared()
+- manhattan_distance()
+
+---
+
+### Angle Helpers
+
+- angle_of_vector()
+- angle_between_vectors()
+- angle_between_points()
+
+---
+
+### Direction Helpers
+
+- direction()
+- perpendicular_left()
+- perpendicular_right()
+
+---
+
+### Projection Helpers
+
+- scalar_projection()
+- vector_projection()
+- rejection()
+
+---
+
+### Line Helpers
+
+- line_from_points()
+- line_coefficients()
+- line_slope()
+- line_direction()
+- normalized_direction()
+- line_length()
+- point_at_parameter()
+- parameter_on_line()
+- closest_point_on_line()
+- distance_to_line()
+- are_parallel()
+- parallel_line()
+- are_perpendicular()
+- perpendicular_line()
+- are_collinear()
+- point_on_line()
+- point_on_segment()
+- line_intersection()
+- line_relationship()
+- lines_intersect()
+- intersection_exists()
+- is_horizontal()
+- is_vertical()
+
+---
+
+### Segment Helpers
+
+- segment_length()
+- segment_midpoint()
+- closest_point_on_segment()
+- distance_to_segment()
+- segments_intersect()
+- segment_intersection()
+- distance_between_segments()
+
+---
+
+### Circle Helpers
+
+- circle()
+- circle_center()
+- circle_radius()
+- circle_diameter()
+- circle_circumference()
+- circle_area()
+- point_in_circle()
+- point_on_circle()
+- circle_from_diameter()
+- circle_bounding_box()
+
+---
+
+### Bounding Box Helpers
+
+- bounding_box()
+- bounding_box_width()
+- bounding_box_height()
+- bounding_box_center()
+- point_in_bounding_box()
+- boxes_intersect()
+- expand_bounding_box()
+
+---
+
+### Polygon Helpers
+
+- polygon()
+- polygon_vertex_count()
+- polygon_edges()
+- polygon_perimeter()
+- signed_polygon_area()
+- polygon_area()
+- polygon_centroid()
+- polygon_bounding_box()
+- point_in_polygon()
+- is_clockwise()
+- is_counter_clockwise()
+- is_convex_polygon()
+- convex_hull()
+
+---
+
+### Polygon Transformations
+
+- translate_polygon()
+- scale_polygon()
+- rotate_polygon()
+
+---
+
+### Miscellaneous Utilities
+
+- lerp()
+- clamp()
+- almost_equal_points()
+
+---
+
+## Internal Helpers
+
+These helpers are implementation details and are not considered part of the
+public API.
+
+- _orientation()
+
+Additional private helpers may be added in future versions without changing
+the public API.
+
+---
+
+## Dependencies
+
+Requires
+
+- math
+- typing
+- enum
+
+Uses
+
+- Standard Python geometry utilities only
+
+Requires
+
+- No Matplotlib dependencies
+- No PowerPoint dependencies
+
+---
+
+## Design Goals
+
+- Lightweight
+- Stateless
+- Reusable
+- Pure geometry
+- Renderer-independent
+- Drawing-independent
+- Minimal dependencies
+- Numerically stable
+- Easily extensible
+
+---
+
+## Design Decisions
+
+### Pure Geometry
+
+Every function operates only on geometric data.
+
+No drawing, rendering or layout operations are performed.
+
+---
+
+### Immutable Operations
+
+Geometry helpers never modify input objects.
+
+Every transformation returns newly computed geometry.
+
+---
+
+### Consistent Precision
+
+Floating-point comparisons use a shared EPSILON tolerance to improve numerical
+stability.
+
+---
+
+### Layer Separation
+
+Geometry calculations are centralized here so higher-level drawing modules
+avoid duplicating mathematical logic.
+
+---
+
+### Shared Utilities
+
+Frequently used operations such as distance, projections, intersections,
+centroids and convex hull computation are implemented once and reused
+throughout the rendering engine.
+
+---
+
+## Known Limitations
+
+Current implementation does **not** include:
+
+- Boolean polygon operations
+- Polygon clipping
+- Bezier curve intersections
+- Spline geometry
+- Voronoi diagrams
+- Delaunay triangulation
+- Oriented bounding boxes
+- Spatial indexing
+- 3D geometry
+- Mesh processing
+
+These responsibilities belong to future geometry or computational geometry
+modules.
+
+---
+
+## Future Enhancements
+
+Potential future additions include:
+
+- Convex polygon intersection
+- Polygon clipping algorithms
+- Bezier utilities
+- Arc intersection helpers
+- Line-circle intersections
+- Circle-circle intersections
+- Polygon simplification
+- Minimum-area bounding rectangles
+- KD-tree spatial searches
+- R-tree spatial indexing
+- 3D geometry helpers
+
+---
+
+## Used By
+
+This module is intended to be reused by:
+
+- drawing/shapes.py
+- drawing/arrows.py
+- drawing/dimensions.py
+- drawing/transforms.py
+- drawing/layout.py
+- renderers/diagram_renderer.py
+- renderers/graph_renderer.py
+- diagrams/geometry.py
+- diagrams/flowchart.py
+- diagrams/tree.py
+- diagrams/network.py
+- diagrams/biology.py
+- diagrams/chemistry.py
+- diagrams/physics.py
+- diagrams/computer.py
+
+---
+
+## Notes
+
+This module provides reusable computational geometry utilities only.
+
+Rendering, styling, layout, collision resolution, routing and diagram
+semantics belong to higher-level drawing and renderer modules.
+
+This file should remain focused on reusable mathematical operations,
+geometric relationships and computational geometry helpers.
+
+---
+
+## Future Checkpoints
+
+### Checkpoint 1
+- Core geometry helpers complete.
+
+### Checkpoint 2
+- Line and segment utilities complete.
+
+### Checkpoint 3
+- Circle and polygon utilities complete.
+
+### Checkpoint 4
+- Diagram engine integration complete.
+
+### Checkpoint 5
+- Graph engine integration complete.
+
+### Checkpoint 6
+- PPT engine complete.
+
+---
+
+## Notes
+
+- Pure Python implementation with no rendering dependencies.
+- Floating-point comparisons use shared EPSILON tolerance.
+- Computational geometry algorithms remain renderer-independent.
+- Compatible with DrawingShapes, DrawingArrows, DrawingDimensions and DrawingTransforms.
 
 ---
 
