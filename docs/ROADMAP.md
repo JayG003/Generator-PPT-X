@@ -12,7 +12,7 @@
 - [x] drawing/dimensions.py
 - [x] drawing/transforms.py
 - [x] drawing/geometry_utils.py
-- [ ] drawing/layout.py
+- [x] drawing/layout.py
 
 ---
 

@@ -13,7 +13,7 @@
 - [x] drawing/dimensions.py
 - [x] drawing/transforms.py
 - [x] drawing/geometry_utils.py
-- [ ] drawing/layout.py
+- [x] drawing/layout.py
 - [ ] renderers/diagram_renderer.py
 - [ ] diagrams/geometry.py
 - [ ] diagrams/flowchart.py
@@ -1835,6 +1835,294 @@ geometric relationships and computational geometry helpers.
 - Floating-point comparisons use shared EPSILON tolerance.
 - Computational geometry algorithms remain renderer-independent.
 - Compatible with DrawingShapes, DrawingArrows, DrawingDimensions and DrawingTransforms.
+
+---
+
+### drawing/layout.py ✅
+
+**Status:** Locked
+
+---
+
+## Purpose
+
+Provides reusable layout algorithms and positioning utilities for the drawing
+engine.
+
+This module is responsible for computing positions of objects for diagrams,
+graphs, trees, grids and general layouts.
+
+It performs no drawing or rendering.
+
+It serves as the common layout engine used by higher-level renderers and
+diagram generators.
+
+---
+
+## Responsibilities
+
+- Validate layout inputs
+- Compute spacing
+- Compute alignment
+- Compute bounding boxes
+- Arrange objects into common layouts
+- Position graph nodes
+- Position tree structures
+- Position circular diagrams
+- Provide reusable layout utilities
+
+---
+
+## Public API
+
+### Validation Helpers
+
+- _validate_points()
+- _validate_sizes()
+- _validate_spacing()
+
+---
+
+### Spacing Helpers
+
+- horizontal_gap()
+- vertical_gap()
+- total_horizontal_spacing()
+- total_vertical_spacing()
+
+---
+
+### Alignment Helpers
+
+- align_left()
+- align_right()
+- align_top()
+- align_bottom()
+- align_center_x()
+- align_center_y()
+- align_center()
+
+---
+
+### Bounding Box Helpers
+
+- bounding_box()
+- bounding_size()
+- bounding_center()
+- expand_bounding_box()
+
+---
+
+### Linear Layouts
+
+- horizontal_layout()
+- vertical_layout()
+- row_layout()
+- column_layout()
+- even_spacing()
+- packed_spacing()
+- distributed_spacing()
+
+---
+
+### Grid Layouts
+
+- grid_layout()
+- matrix_layout()
+- fixed_columns()
+- fixed_rows()
+- auto_grid()
+- cell_position()
+
+---
+
+### Circular Layouts
+
+- circle_layout()
+- radial_layout()
+- ring_layout()
+- spiral_layout()
+- arc_layout()
+
+---
+
+### Tree Layouts
+
+- vertical_tree()
+- horizontal_tree()
+- balanced_tree()
+- binary_tree_positions()
+- mind_map_layout()
+
+---
+
+### Graph Layouts
+
+- random_layout()
+- force_directed_layout()
+- layered_layout()
+- hierarchical_layout()
+- network_layout()
+
+---
+
+### Utility Helpers
+
+- auto_spacing()
+- rectangles_overlap()
+- center_positions()
+- scale_to_fit()
+- apply_margin()
+
+---
+
+## Internal Helpers
+
+Validation helpers are intentionally private.
+
+- _validate_points()
+- _validate_sizes()
+- _validate_spacing()
+
+Additional helper methods may be added in future versions without changing
+the public API.
+
+---
+
+## Dependencies
+
+Requires
+
+- math
+- random
+- math.inf
+
+Uses
+
+- Standard Python geometry and layout calculations only.
+
+Requires
+
+- No Matplotlib dependencies
+- No PowerPoint dependencies
+
+---
+
+## Design Goals
+
+- Lightweight
+- Stateless
+- Reusable
+- Renderer-independent
+- Drawing-independent
+- Minimal dependencies
+- Easily extensible
+- Deterministic layouts
+
+---
+
+## Design Decisions
+
+### Layout Only
+
+This module computes positions only.
+
+It never draws shapes, connectors, labels or diagrams.
+
+---
+
+### Layer Separation
+
+Layout algorithms are centralized here so renderers and diagram generators
+never duplicate positioning logic.
+
+---
+
+### Generic Algorithms
+
+Layouts operate on coordinates and sizes instead of specific diagram objects,
+making them reusable across the entire rendering engine.
+
+---
+
+### Reusable Building Blocks
+
+Complex layouts are composed from simpler algorithms whenever possible.
+Examples include:
+
+- row_layout() using horizontal_layout()
+- column_layout() using vertical_layout()
+- matrix_layout() using grid_layout()
+- radial_layout() using circle_layout()
+- ring_layout() using circle_layout()
+- balanced_tree() using vertical_tree()
+- hierarchical_layout() using layered_layout()
+- network_layout() using random_layout() and force_directed_layout()
+
+---
+
+## Known Limitations
+
+Current implementation does **not** include:
+
+- DAG layout algorithms
+- Sugiyama graph layout
+- Orthogonal graph routing
+- Edge crossing minimization
+- Automatic connector routing
+- Obstacle avoidance
+- Constraint-based layouts
+- Hypergraph layouts
+- UML-specific layouts
+- Animated layouts
+
+These responsibilities belong to future diagram or routing modules.
+
+---
+
+## Future Enhancements
+
+Potential future additions include:
+
+- Sugiyama layered graphs
+- Radial trees
+- Treemap layouts
+- Sankey layouts
+- Timeline layouts
+- Swimlane layouts
+- UML layouts
+- ER diagram layouts
+- Smart collision resolution
+- Automatic edge routing
+
+---
+
+## Used By
+
+This module is intended to be reused by:
+
+- renderers/diagram_renderer.py
+- renderers/graph_renderer.py
+- diagrams/geometry.py
+- diagrams/flowchart.py
+- diagrams/tree.py
+- diagrams/network.py
+- diagrams/biology.py
+- diagrams/chemistry.py
+- diagrams/physics.py
+- diagrams/computer.py
+
+---
+
+## Notes
+
+This module provides reusable layout algorithms only.
+
+Rendering, styling, routing, collision resolution between rendered objects,
+and diagram semantics belong to higher-level renderer and diagram modules.
+
+This file should remain focused on reusable positioning algorithms and layout
+utilities.
 
 ---
 
