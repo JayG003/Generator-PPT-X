@@ -1,5 +1,5 @@
 import math
-from copy import replace
+from dataclasses import replace
 
 from drawing.arrows import DrawingArrows
 from drawing.labels import DrawingLabels

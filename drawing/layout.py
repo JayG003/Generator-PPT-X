@@ -940,7 +940,7 @@ class DrawingLayout:
         level_spacing=120.0,
         sibling_spacing=80.0,
     ):
-        """
+        r"""
         Generates a perfect balanced binary tree.
 
         Example
@@ -1494,15 +1494,15 @@ class DrawingLayout:
     # Improve Existing Method (Instead of New Padding Helper)
     # ---------------------------------------------------------
 
-    def expand_bounding_box(
-        self,
-        bbox,
-        padding=None,
-        left=None,
-        right=None,
-        top=None,
-        bottom=None,
-    ):
+    # def expand_bounding_box(
+    #     self,
+    #     bbox,
+    #     padding=None,
+    #     left=None,
+    #     right=None,
+    #     top=None,
+    #     bottom=None,
+    # ):
         """
         Expands a bounding box.
 

@@ -1,4 +1,4 @@
-from copy import replace
+from dataclasses import replace
 from functools import lru_cache
 import textwrap
 
@@ -9,6 +9,27 @@ from drawing.styles import (
     DEFAULT_STYLE,
     LABEL_STYLE,
 )
+
+@lru_cache(maxsize=128)
+def _font_properties_cached(size, weight):
+    return FontProperties(size=size, weight=weight)
+
+
+@lru_cache(maxsize=1024)
+def _measure_text_cached(text, font_size, font_weight):
+    if not text:
+        return (0.0, 0.0)
+
+    path = TextPath(
+        (0, 0),
+        text,
+        prop=_font_properties_cached(font_size, font_weight),
+    )
+
+    bbox = path.get_extents()
+
+    return (bbox.width, bbox.height)
+
 
 class DrawingLabels:
 
@@ -34,46 +55,23 @@ class DrawingLabels:
         return replace(style, **overrides)
 
     # FONT HELPERS
-    @lru_cache(maxsize=128)
     def _font_properties(
         self,
         size,
         weight,
     ):
 
-        return FontProperties(
-            size=size,
-            weight=weight,
-        )
+        return _font_properties_cached(size, weight)
 
     # TEXT MEASUREMENT
-    @lru_cache(maxsize=512)
     def _measure_text(
         self,
         text,
         font_size,
         font_weight,
     ):
-        if not text:
-            return (0.0, 0.0)
 
-        fp = self._font_properties(
-            font_size,
-            font_weight,
-        )
-
-        path = TextPath(
-            (0, 0),
-            text,
-            prop=fp,
-        )
-
-        bbox = path.get_extents()
-
-        return (
-            bbox.width,
-            bbox.height,
-        )
+        return _measure_text_cached(text, font_size, font_weight)
 
     def text_size(
         self,

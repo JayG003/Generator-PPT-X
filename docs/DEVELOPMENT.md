@@ -18,12 +18,8 @@
 - [ ] diagrams/geometry.py
 - [ ] diagrams/flowchart.py
 - [ ] diagrams/tree.py
-- [ ] diagrams/network.py
-- [ ] diagrams/biology.py
-- [ ] diagrams/chemistry.py
-- [ ] diagrams/physics.py
-- [ ] diagrams/computer.py
 - [ ] renderers/graph_renderer.py
+- [ ] diagrams/graph.py
 - [ ] engine/ppt_generator.py
 - [ ] engine/slide_dispatcher.py
 - [ ] renderers/title_renderer.py
@@ -1838,7 +1834,7 @@ geometric relationships and computational geometry helpers.
 
 ---
 
-### drawing/layout.py ✅
+# drawing/layout.py ✅
 
 **Status:** Locked
 

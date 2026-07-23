@@ -21,16 +21,11 @@
 - [ ] diagrams/geometry.py
 - [ ] diagrams/flowchart.py
 - [ ] diagrams/tree.py
-- [ ] diagrams/network.py
-- [ ] diagrams/biology.py
-- [ ] diagrams/chemistry.py
-- [ ] diagrams/physics.py
-- [ ] diagrams/computer.py
-
 ---
 
 ### Phase 3 - Graph Engine
 - [ ] renderers/graph_renderer.py
+- [ ] diagrams/graph.py
 
 ---
 
